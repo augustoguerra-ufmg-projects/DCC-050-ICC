@@ -91,7 +91,9 @@ class UfmgGraph(Scene):
         self.play(Write(label22, run_time=0.5))
         self.play(Write(label23, run_time=0.5))
 
-        self.play(FadeOut(G, run_time=2), FadeOut(label0, run_time=2), FadeOut(label1, run_time=2),
+        
+
+        self.play(FadeOut(label0, run_time=2), FadeOut(label1, run_time=2),
                   FadeOut(label2, run_time=2), FadeOut(label3, run_time=2), FadeOut(label4, run_time=2),
                   FadeOut(label5, run_time=2), FadeOut(label6, run_time=2), FadeOut(label7, run_time=2),
                   FadeOut(label8, run_time=2), FadeOut(label9, run_time=2), FadeOut(label10, run_time=2),
@@ -100,3 +102,15 @@ class UfmgGraph(Scene):
                   FadeOut(label17, run_time=2), FadeOut(label18, run_time=2), FadeOut(label19, run_time=2),
                   FadeOut(label20, run_time=2), FadeOut(label21, run_time=2), FadeOut(label22, run_time=2),
                   FadeOut(label23, run_time=2))
+
+        self.play(*[G[v].animate.move_to(2*RIGHT*np.cos(ind/5* PI) + 2*UP*np.sin(ind/3*PI))
+            for ind, v in enumerate(G.vertices)])
+
+        self.play(*[G[v].animate.move_to(3*RIGHT*np.cos(ind/5* PI) + 3*UP*np.sin(ind/7*PI))
+            for ind, v in enumerate(G.vertices)])
+
+        
+        self.play(*[G[v].animate.move_to(4*RIGHT*np.cos(ind/3* PI) + 2*UP*np.sin(ind/7*PI))
+            for ind, v in enumerate(G.vertices)])
+
+        self.play(Uncreate(G, run_time=2))
